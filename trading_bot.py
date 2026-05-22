@@ -60,7 +60,7 @@ def load_portfolio():
         "winning_trades": 0,
         "losing_trades": 0,
         "bot_active": True,
-        "timeframe": "5m",
+        "timeframe": "15m",
         "rsi_buy_level": 36,
         "rsi_sell_level": 65,
         "trailing_input": 2.0,
