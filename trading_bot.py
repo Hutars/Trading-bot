@@ -24,7 +24,7 @@ TIMEFRAME_COOLDOWN = {
     '1m': 60,
     '3m': 180,
     '5m': 300,
-    '15m': 900,
+    '15m': 300,
     '1h': 3600,
 }
 
@@ -41,7 +41,7 @@ def load_portfolio():
                     data.setdefault('winning_trades', 0)
                     data.setdefault('losing_trades', 0)
                     data.setdefault('bot_active', True)
-                    data.setdefault('timeframe', '5m')
+                    data.setdefault('timeframe', '15m')
                     data.setdefault('rsi_buy_level', 36)
                     data.setdefault('rsi_sell_level', 65)
                     data.setdefault('trailing_input', 2.0)
@@ -60,7 +60,7 @@ def load_portfolio():
         "winning_trades": 0,
         "losing_trades": 0,
         "bot_active": True,
-        "timeframe": "5m",
+        "timeframe": "15m",
         "rsi_buy_level": 36,
         "rsi_sell_level": 65,
         "trailing_input": 2.0,
@@ -260,7 +260,7 @@ def main_dashboard():
             fig.add_trace(go.Scatter(x=df['timestamp'], y=df['rsi'], mode='lines', name='RSI', line=dict(color='orange')), row=2, col=1)
             fig.add_hline(y=rsi_sell_level, line_dash="dash", line_color="red", annotation_text=f"Продажби ({rsi_sell_level})", row=2, col=1)
             fig.add_hline(y=rsi_buy_level, line_dash="dash", line_color="green", annotation_text=f"Покупки ({rsi_buy_level})", row=2, col=1)
-            fig.add_hline(y=current_price, line_dash="dot", line_color="cyan", row=1, col=1)
+            fig.add_hline(y=current_price, line_dash="dot", line_color="black", row=1, col=1)
             fig.update_layout(
                 title=f"ETH/USDT ({timeframe}) + RSI",
                 xaxis_rangeslider_visible=False,
@@ -268,7 +268,7 @@ def main_dashboard():
                 margin=dict(l=10, r=120, t=40, b=40),
                 hovermode="x unified",
                 annotations=[
-                    dict(x=1.01, y=current_price, yref="y1", xref="paper", text=f"👉 ${current_price:,.2f}", showarrow=False, font=dict(size=14, color="cyan", family="Arial Black"), xanchor="left", yanchor="middle"),
+                    dict(x=1.01, y=current_price, yref="y1", xref="paper", text=f"👉 ${current_price:,.2f}", showarrow=False, font=dict(size=14, color="red", family="Arial Black"), xanchor="left", yanchor="middle"),
                     dict(x=1.01, y=current_rsi, yref="y2", xref="paper", text=f"📊 RSI: {current_rsi:.2f}", showarrow=False, font=dict(size=13, color="orange", family="Arial Black"), xanchor="left", yanchor="middle")
                 ],
                 xaxis=dict(showspikes=True, spikemode="across", spikesnap="cursor", spikethickness=1, spikecolor="rgba(255,255,255,0.4)", spikedash="dash"),
