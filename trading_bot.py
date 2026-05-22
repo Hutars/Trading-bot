@@ -110,7 +110,7 @@ def fetch_ticker():
 def live_price_widget():
     try:
         price = fetch_ticker()
-        timeframe = st.session_state.get('timeframe_state', '5m')
+        timeframe = st.session_state.get('timeframe_state', '15m')
 
         # Взимаме последния RSI от кеша ако съществува
         cached_rsi = st.session_state.get('last_rsi', None)
@@ -126,12 +126,12 @@ def live_price_widget():
         st.warning(f"Live price грешка: {e}")
 
 # ─────────────────────────────────────────────────────────────
-# FRAGMENT 2: Графика + търговска логика — опреснява се на 30 секунди
+# FRAGMENT 2: Графика + търговска логика — опреснява се на 10 секунди
 # ─────────────────────────────────────────────────────────────
-@st.fragment(run_every=30)
+@st.fragment(run_every=10)
 def main_dashboard():
     try:
-        timeframe = st.session_state.get('timeframe_state', '5m')
+        timeframe = st.session_state.get('timeframe_state', '15m')
         rsi_buy_level = st.session_state.get('rsi_buy_state', 36)
         rsi_sell_level = st.session_state.get('rsi_sell_state', 65)
         trailing_input = st.session_state.get('trailing_state', 2.0)
