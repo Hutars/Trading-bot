@@ -20,7 +20,7 @@ logging.basicConfig(filename='paper_trades.log', level=logging.INFO, format='%(a
 
 @st.cache_resource
 def get_exchange():
-    return ccxt.binance({'enableRateLimit': True})
+    return ccxt.binanceus({'enableRateLimit': True})
 
 exchange = get_exchange()
 
@@ -68,7 +68,7 @@ def load_portfolio():
         "winning_trades": 0,
         "losing_trades": 0,
         "bot_active": True,
-        "timeframe": "5m",
+        "timeframe": "15m",
         "rsi_buy_level": 36,
         "rsi_sell_level": 65,
         "trailing_input": 2.0,
